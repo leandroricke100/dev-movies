@@ -5,7 +5,6 @@ import Card from '../Card'
 
 // eslint-disable-next-line react/prop-types
 function Slider({ info, title }) {
-  console.log(info, title)
   return (
     <Container>
       <h2>{title}</h2>
@@ -28,10 +27,9 @@ function Slider({ info, title }) {
 Slider.propTypes = {
   info: PropTypes.arrayOf(
     PropTypes.shape({
-      original_title: PropTypes.string.isRequired,
+      title: PropTypes.string,
     })
-  ).isRequired,
-  title: PropTypes.string.isRequired,
+  ),
 }
 
 export default Slider
