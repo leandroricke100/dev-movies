@@ -1,5 +1,6 @@
+import Button from '../../components/Button'
 import api from '../../services/api'
-import { Background, Info, Poster, Container } from './styles'
+import { Background, Info, Poster, Container, ContainerButtons } from './styles'
 import React, { useState, useEffect } from 'react'
 
 function Home() {
@@ -27,7 +28,12 @@ function Home() {
             <Info>
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
+              <ContainerButtons>
+                <Button red={true}>Assista agora</Button>
+                <Button red={false}>Assista o trailer</Button>
+              </ContainerButtons>
             </Info>
+
             <Poster>
               <img
                 alt="capa-do-filme"
