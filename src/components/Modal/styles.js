@@ -4,7 +4,6 @@ export const Background = styled.div`
   height: 100vh;
   width: 100vw;
   z-index: 999;
-  background-color: #000;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   position: absolute;
@@ -24,5 +23,14 @@ export const Container = styled.div`
 
   iframe {
     border: none;
+  }
+
+  .icon {
+    color: #fff;
+    position: fixed;
+    top: 0;
+    display: flex;
+    margin-top: 120px;
+    cursor: pointer;
   }
 `

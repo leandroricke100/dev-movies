@@ -7,6 +7,7 @@ import { Background, Info, Poster, Container, ContainerButtons } from './styles'
 import React, { useState, useEffect } from 'react'
 
 function Home() {
+  const [showModal, setShowModal] = useState(false)
   const [movie, setMovie] = useState()
   const [topMovies, setTopMovies] = useState()
   const [topSeries, setTopSeries] = useState()
@@ -19,7 +20,6 @@ function Home() {
         data: { results },
       } = await api.get('/movie/popular')
 
-      // const randomIndex = Math.floor(Math.random() * results.length)
       setMovie(results[0])
     }
 
@@ -62,18 +62,26 @@ function Home() {
     getTopPeople()
   }, [])
 
+  const handleTrailerButtonClick = () => {
+    setShowModal(true)
+  }
+
   return (
     <>
       {movie && (
         <Background $img={getImages(movie.backdrop_path)}>
-          <Modal movieId={movie.id} />
+          {showModal && (
+            <Modal movieId={movie.id} setShowModal={setShowModal} />
+          )}
           <Container>
             <Info>
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
               <ContainerButtons>
                 <Button red={true}>Assista agora</Button>
-                <Button red={false}>Assista o trailer</Button>
+                <Button red={false} onClick={handleTrailerButtonClick}>
+                  Assista o trailer
+                </Button>
               </ContainerButtons>
             </Info>
 

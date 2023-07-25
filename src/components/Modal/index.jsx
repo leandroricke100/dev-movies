@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Container, Background } from './styles'
 import api from '../../services/api'
-
+import CancelIcon from '@mui/icons-material/Cancel'
 // eslint-disable-next-line react/prop-types
-function Modal({ movieId }) {
+function Modal({ movieId, setShowModal }) {
   const [movie, setMovie] = useState()
 
   useEffect(() => {
@@ -11,17 +11,18 @@ function Modal({ movieId }) {
       const {
         data: { results },
       } = await api.get(`/movie/${movieId}/videos`)
-      console.log(results)
-      setMovie(results)
+
+      setMovie(results[0])
     }
 
     getMovies()
   }, [])
 
   return (
-    <Background>
+    <Background onClick={() => setShowModal(false)}>
       {movie && (
         <Container>
+          <CancelIcon className="icon" />
           <iframe
             src={`https://www.youtube.com/embed/${movie.key}`}
             title="Youtube Video Player"
