@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Container, Background } from './styles'
 import CancelIcon from '@mui/icons-material/Cancel'
-import { getMovie } from '../../services/getData'
+import { getMovieVides } from '../../services/getData'
 // eslint-disable-next-line react/prop-types
 function Modal({ movieId, setShowModal }) {
   const [movie, setMovie] = useState()
 
   useEffect(() => {
     async function getMovies() {
-      setMovie(await getMovie(movieId))
+      setMovie(await getMovieVides(movieId))
     }
 
     getMovies()
