@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Container, Background } from './styles'
-import api from '../../services/api'
 import CancelIcon from '@mui/icons-material/Cancel'
+import { getMovie } from '../../services/getData'
 // eslint-disable-next-line react/prop-types
 function Modal({ movieId, setShowModal }) {
   const [movie, setMovie] = useState()
 
   useEffect(() => {
     async function getMovies() {
-      const {
-        data: { results },
-      } = await api.get(`/movie/${movieId}/videos`)
-
-      setMovie(results[0])
+      setMovie(await getMovie(movieId))
     }
 
     getMovies()
