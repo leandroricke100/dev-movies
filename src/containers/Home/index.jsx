@@ -1,4 +1,5 @@
 import Button from '../../components/Button'
+import Modal from '../../components/Modal'
 import Slider from '../../components/Slider'
 import api from '../../services/api'
 import { getImages } from '../../utils/getImages'
@@ -18,6 +19,7 @@ function Home() {
         data: { results },
       } = await api.get('/movie/popular')
 
+      // const randomIndex = Math.floor(Math.random() * results.length)
       setMovie(results[0])
     }
 
@@ -41,7 +43,7 @@ function Home() {
       const {
         data: { results },
       } = await api.get('/movie/upcoming')
-      console.log(results)
+
       setPopularSeries(results)
     }
 
@@ -64,6 +66,7 @@ function Home() {
     <>
       {movie && (
         <Background $img={getImages(movie.backdrop_path)}>
+          <Modal movieId={movie.id} />
           <Container>
             <Info>
               <h1>{movie.title}</h1>

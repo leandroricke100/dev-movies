@@ -1,22 +1,33 @@
 import { Container, Menu, Li } from './styles'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
+import { useState } from 'react'
 
-// eslint-disable-next-line react/prop-types
 function Header() {
+  const [changeBackground, setChangeBackground] = useState(false)
+  const { pathname } = useLocation()
+
+  window.onscroll = () => {
+    if (window.pageYOffset > 200) {
+      setChangeBackground(true)
+    } else {
+      setChangeBackground(false)
+    }
+  }
+
   return (
-    <Container>
+    <Container $changeBackground={changeBackground}>
       <img src={Logo} alt="logo-dev-movies" />
       <Menu>
-        <Li>
+        <Li $isActive={pathname === '/'}>
           <Link to="/">Home</Link>
         </Li>
 
-        <Li>
+        <Li $isActive={pathname.includes('/filmes')}>
           <Link to="/filmes">Filmes</Link>
         </Li>
 
-        <Li>
+        <Li $isActive={pathname.includes('/series')}>
           <Link to="/series">Séries</Link>
         </Li>
       </Menu>
