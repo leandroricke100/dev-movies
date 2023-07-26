@@ -4,10 +4,11 @@ import { Container } from './styles'
 import PropTypes from 'prop-types'
 
 function Card({ item }) {
+  const imagePath = item.poster_path || item.profile_path || ''
   return (
     <Container>
-      <img src={getImages(item.poster_path || item.profile_path || '')} />
-      <h3>{item.title || item.name}</h3>
+      {imagePath && <img src={getImages(imagePath)} />}
+      <h3>{(imagePath && item.title) || item.name}</h3>
     </Container>
   )
 }

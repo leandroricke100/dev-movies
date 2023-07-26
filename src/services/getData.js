@@ -39,14 +39,15 @@ export async function getTopPeople() {
 
   return results
 }
-// busca filme pelo id
-// export async function getMovie(movieId) {
-//   const {
-//     data: { results },
-//   } = await api.get(`/movie/${movieId}/videos`)
+// eslint-disable-next-line spaced-comment
+//busca filme pelo id
+export async function getMovie(movieId) {
+  const {
+    data: { results },
+  } = await api.get(`/movie/${movieId}/videos`)
 
-//   return results
-// }
+  return results[0]
+}
 
 export async function getMovieVideos(movieId) {
   const {
