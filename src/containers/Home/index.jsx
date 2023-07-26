@@ -44,10 +44,6 @@ function Home() {
     getAllData()
   }, [])
 
-  const handleTrailerButtonClick = () => {
-    setShowModal(true)
-  }
-
   return (
     <>
       {movie && (
@@ -66,7 +62,7 @@ function Home() {
                 >
                   Assista agora
                 </Button>
-                <Button red={false} onClick={handleTrailerButtonClick}>
+                <Button red={false} onClick={() => setShowModal(true)}>
                   Assista o trailer
                 </Button>
               </ContainerButtons>
